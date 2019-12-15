@@ -2,13 +2,13 @@ import Header from './Header'
 import Footer from './Footer'
 import React, {Component} from 'react'
 
-class Layout extends Component {
+export default class Layout extends Component {
     render() {
         return (
             <div>
-                <Header />
+                <Header/>
                 {this.props.children}
-                <Footer />
+                <Footer/>
             </div>
         )
     }
