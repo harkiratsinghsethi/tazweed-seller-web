@@ -13,12 +13,20 @@ export default class SelectSellerId extends React.Component {
 
     handleSubmit = (event) => {
         console.log('****', this.state.seller_id);
-        fetch(`http://workoutapi-heroku.herokuapp.com/api/findSellerID?seller_id=${this.state.seller_id}`)
+        // console.log(`https://workoutapi-heroku.herokuapp.com/api/findSellerID?seller_id=${this.state.seller_id}`);
+        fetch(`https://workoutapi-heroku.herokuapp.com/api/findSellerID?seller_id=${this.state.seller_id}`,
+            {
+                method: "GET",
+                headers: {
+                    "access-control-allow-origin": "*",
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
             .then(result => {
                 console.log(result)
             });
         event.preventDefault();
-    }
+    };
 
     render() {
 
