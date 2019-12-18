@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {Component} from 'react';
+import TimeRangePicker from '@wojtekmaj/react-timerange-picker';
 
 import moment from 'moment';
 import ReactTimeslotCalendar from 'react-timeslot-calendar';
 
+const time_slots = ['8', '9', '10', '11', '12', '13']
 export default class SelectTimeSlot extends React.Component {
-    constructor() {
-        super();
-        this.state = {}
-    }
+    state = {
+        selectedTime: '',
+        seller_id: '',
+        start_time: '',
+        end_time: ''
+    };
+
+    onChange = time => this.setState({time});
+
 
     componentDidMount() {
         fetch('https://workoutapi-heroku.herokuapp.com/api/showTimeSlot?seller_id=1')
@@ -20,17 +27,60 @@ export default class SelectTimeSlot extends React.Component {
 
     }
 
-    render() {
-        return (<div style={{marginTop:'20px'}}>
-                <ReactTimeslotCalendar
-                    initialDate={moment([2017, 3, 24]).format()}
-                    lastDate={moment([2017, 3, 24]).format()}
-                    timeslots={[
-                        ['9', '10'],
-                        ['10', '11:30:00 A'],
-                    ]}
+    handleDropDownChange = (event) => {
 
-                />
+        const time = event.target.value.split('-');
+        const start_time = time[0];
+        const end_time = time[1];
+
+        console.log(start_time, end_time);
+
+        this.setState({
+            start_time: time[0],
+            end_time: time[1],
+            isSubmitted: false,
+            isError: false
+        })
+    };
+
+    submitAvailability = () => {
+        // console.log(`https://workoutapi-heroku.herokuapp.com/api/submitTimeSlot?seller_id=${this.state.seller_id}&start_time=${this.state.start_time}:00&end_time=${this.state.end_time}:00`)
+
+        fetch(`http://localhost:3001/api/submitTimeSlot?seller_id=${this.state.seller_id}&start_time=${this.state.start_time}:00&end_time=${this.state.end_time}:00`)
+            .then(resp => {
+                return resp;
+            })
+            .then(respJson => {
+                console.log(respJson);
+                console.log(respJson.status);
+                if (respJson.status === 404) {
+                    this.setState({isError: true, isSubmitted: false})
+
+                }
+                else {
+                    this.setState({isSubmitted: true, isError: false})
+                }
+            })
+    };
+
+
+    render() {
+        this.state.seller_id = this.props.sellerID;
+        console.log(this.state.seller_id);
+        const optionItems = time_slots.map(time =>
+            <option key={time}>{`${time}:00-${time}:30`}</option>
+        );
+
+        return (
+            <div>
+                <select onChange={this.handleDropDownChange}>
+                    <option value="none" selected>None</option>
+                    {optionItems}
+                </select>
+
+                <button onClick={() => this.submitAvailability()}> Submit Availability</button>
+                {this.state.isSubmitted ? <label> Availability Submitted Successfully</label> : <label> </label>}
+                {this.state.isError ? <label> Some Unexpected Error OR entry is already there</label> : <label> </label>}
             </div>
         );
     }

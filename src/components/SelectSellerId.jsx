@@ -107,7 +107,7 @@ export default class SelectSellerId extends React.Component {
                         </div> : <label></label>
 
                 }
-                {this.state.showTimeSlots ? <SelectTimeSlot/> : <label></label>}
+                {this.state.showTimeSlots ? <SelectTimeSlot sellerID={this.state.seller_id}/> : <label></label>}
                 {this.state.showAvailableRequests ? <AvailableRequest sellerID={this.state.seller_id}/> :
                     <label></label>}
 
