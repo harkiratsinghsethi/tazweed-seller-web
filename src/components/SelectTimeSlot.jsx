@@ -46,7 +46,7 @@ export default class SelectTimeSlot extends React.Component {
     submitAvailability = () => {
         // console.log(`https://workoutapi-heroku.herokuapp.com/api/submitTimeSlot?seller_id=${this.state.seller_id}&start_time=${this.state.start_time}:00&end_time=${this.state.end_time}:00`)
 
-        fetch(`http://localhost:3001/api/submitTimeSlot?seller_id=${this.state.seller_id}&start_time=${this.state.start_time}:00&end_time=${this.state.end_time}:00`)
+        fetch(`http://workoutapi-heroku.herokuapp.com/api/submitTimeSlot?seller_id=${this.state.seller_id}&start_time=${this.state.start_time}:00&end_time=${this.state.end_time}:00`)
             .then(resp => {
                 return resp;
             })
@@ -80,7 +80,8 @@ export default class SelectTimeSlot extends React.Component {
 
                 <button onClick={() => this.submitAvailability()}> Submit Availability</button>
                 {this.state.isSubmitted ? <label> Availability Submitted Successfully</label> : <label> </label>}
-                {this.state.isError ? <label> Some Unexpected Error OR entry is already there</label> : <label> </label>}
+                {this.state.isError ? <label> Some Unexpected Error OR entry is already there</label> :
+                    <label> </label>}
             </div>
         );
     }
