@@ -1,11 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ReactDOM from 'react-dom';
 import SelectSellerId from './components/SelectSellerId'
 import AppointmentRequest from './components/AppointmentRequest'
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Header from './Header'
 
 ReactDOM.render(
     <BrowserRouter>

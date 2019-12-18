@@ -1,5 +1,4 @@
 import React from 'react';
-import {Button, ButtonToolbar} from 'react-bootstrap';
 import SelectTimeSlot from './SelectTimeSlot'
 import AvailableRequest from "./AvailableRequest";
 

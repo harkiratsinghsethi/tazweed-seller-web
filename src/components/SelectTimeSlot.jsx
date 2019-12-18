@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
-import TimeRangePicker from '@wojtekmaj/react-timerange-picker';
 
-import moment from 'moment';
-import ReactTimeslotCalendar from 'react-timeslot-calendar';
 
 const time_slots = ['8', '9', '10', '11', '12', '13']
 export default class SelectTimeSlot extends React.Component {

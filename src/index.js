@@ -5,10 +5,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import SelectSellerId from "./components/SelectSellerId";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import AppointmentRequest from "./components/AppointmentRequest";
-import layout from './layouts/layout'
 import Header from './layouts/Header'
-import Footer from './layouts/Footer'
 
 ReactDOM.render(
     <BrowserRouter>
