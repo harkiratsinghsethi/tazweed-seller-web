@@ -13,19 +13,17 @@ export default class SelectTimeSlot extends React.Component {
         end_time: ''
     };
 
-    onChange = time => this.setState({time});
 
-
-    componentDidMount() {
-        fetch('https://workoutapi-heroku.herokuapp.com/api/showTimeSlot?seller_id=1')
-            .then(result =>
-                result.json()
-            ).then(jsonResponse => {
-            console.log(jsonResponse)
-        })
-
-
-    }
+    // componentDidMount() {
+    //     fetch('https://workoutapi-heroku.herokuapp.com/api/showTimeSlot?seller_id=1')
+    //         .then(result =>
+    //             result.json()
+    //         ).then(jsonResponse => {
+    //         console.log(jsonResponse)
+    //     })
+    //
+    //
+    // }
 
     handleDropDownChange = (event) => {
 
@@ -33,7 +31,7 @@ export default class SelectTimeSlot extends React.Component {
         const start_time = time[0];
         const end_time = time[1];
 
-        console.log(start_time, end_time);
+        // console.log(start_time, end_time);
 
         this.setState({
             start_time: time[0],
@@ -51,8 +49,6 @@ export default class SelectTimeSlot extends React.Component {
                 return resp;
             })
             .then(respJson => {
-                console.log(respJson);
-                console.log(respJson.status);
                 if (respJson.status === 404) {
                     this.setState({isError: true, isSubmitted: false})
 
@@ -66,7 +62,6 @@ export default class SelectTimeSlot extends React.Component {
 
     render() {
         this.state.seller_id = this.props.sellerID;
-        console.log(this.state.seller_id);
         const optionItems = time_slots.map(time =>
             <option key={time}>{`${time}:00-${time}:30`}</option>
         );

@@ -31,13 +31,10 @@ export default class SelectSellerId extends React.Component {
     }
 
     handleHeaderNameChange = (event) => {
-        console.log(event.target.value);
         this.setState({seller_id: event.target.value});
     };
 
     handleSubmit = (event) => {
-        console.log('****', this.state.seller_id);
-        // console.log(`https://workoutapi-heroku.herokuapp.com/api/findSellerID?seller_id=${this.state.seller_id}`);
         fetch(`https://workoutapi-heroku.herokuapp.com/api/findSellerID?seller_id=${this.state.seller_id}`)
             .then(result =>
                 result.json()
@@ -59,12 +56,10 @@ export default class SelectSellerId extends React.Component {
                     })
                 }
 
-                console.log(jsonLoad.length)
             });
         event.preventDefault();
     };
     showTimeSlot = () => {
-        console.log('in itme ')
         this.setState({
             showTimeSlots: true,
             showAvailableRequests: false,

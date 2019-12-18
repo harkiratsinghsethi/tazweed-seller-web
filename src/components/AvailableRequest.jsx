@@ -12,7 +12,6 @@ export default class AvailableRequest extends React.Component {
 
 
     componentDidMount() {
-        console.log('did mount');
         this.fetchAppointmentRequests()
     }
 
@@ -46,9 +45,7 @@ export default class AvailableRequest extends React.Component {
         const time = rowValue.row.SLOT.split('-');;
         const start_time = time[0];
         const end_time = time[1];
-        console.log(start_time, end_time);
         const seller_id = rowValue.row.SELLER_ID;
-        console.log(`https://workoutapi-heroku.herokuapp.com/api/acceptRequest?seller_id=${seller_id}&start_time=${start_time}&end_time=${end_time}`)
         fetch(`https://workoutapi-heroku.herokuapp.com/api/acceptRequest?seller_id=${seller_id}&start_time=${start_time}&end_time=${end_time}`)
             .then(resp =>
                 resp.json()
@@ -59,13 +56,10 @@ export default class AvailableRequest extends React.Component {
         this.fetchAppointmentRequests()
     };
     rejectRequest = (rowValue) => {
-        console.log('in reject request');
         const time = rowValue.row.SLOT.split('-');
         const start_time = time[0];
         const end_time = time[1];
-        console.log(start_time, end_time)
         const seller_id = rowValue.row.SELLER_ID;
-        console.log(`https://workoutapi-heroku.herokuapp.com/api/rejectRequest?seller_id=${seller_id}&start_time=${start_time}&end_time=${end_time}`)
         fetch(`https://workoutapi-heroku.herokuapp.com/api/rejectRequest?seller_id=${seller_id}&start_time=${start_time}&end_time=${end_time}`)
             .then(resp =>
                 resp.json()
