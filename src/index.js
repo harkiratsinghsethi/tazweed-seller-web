@@ -48,7 +48,7 @@ ReactDOM.render(
                 {/*<Footer/>*/}
             </article>
         </div>
-        <Footer/>
+        {/*<Footer/>*/}
     </BrowserRouter>
 
     , document.getElementById('root')
