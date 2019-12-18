@@ -7,11 +7,16 @@ export default class AvailableRequest extends React.Component {
 
     constructor() {
         super();
-        this.state = {data: [], loading: false, seller_id: 0}
+        this.state = {data: [], loading: false, seller_id: 0, isAccepted: false, isRejected: false}
     }
 
 
     componentDidMount() {
+        console.log('did mount');
+        this.fetchAppointmentRequests()
+    }
+
+    fetchAppointmentRequests = () => {
         fetch(`https://workoutapi-heroku.herokuapp.com/api/getAppointmentRequests?seller_id=${this.state.seller_id}`)
             .then(resp => resp.json())
             .then(respJson => respJson.map(item => ({
@@ -26,11 +31,13 @@ export default class AvailableRequest extends React.Component {
                     loading: true
                 })
             })
-
-
-    }
+    };
 
     componentDidUpdate() {
+        console.log('did update')
+    }
+
+    componentWillUpdate() {
         console.log('will update')
     }
 
@@ -47,9 +54,9 @@ export default class AvailableRequest extends React.Component {
                 resp.json()
             )
             .then(respJson => {
-                console.log(respJson)
-            })
-
+                console.log(respJson.affectedRows)
+            });
+        this.fetchAppointmentRequests()
     };
     rejectRequest = (rowValue) => {
         console.log('in reject request');
@@ -65,7 +72,9 @@ export default class AvailableRequest extends React.Component {
             )
             .then(respJson => {
                 console.log(respJson)
-            })
+            });
+        this.fetchAppointmentRequests()
+
     };
 
     render() {

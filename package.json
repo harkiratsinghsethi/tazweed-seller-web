@@ -24,9 +24,7 @@
     "clean": "rm -rf public/bundles/",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "react-scripts start",
-    "start:dev": "npm run clean  && webpack -d && nodemon --ignore 'public/*' npm run start",
-    "build": "npm run clean && webpack -p"
+    "start": "react-scripts start"
   },
   "eslintConfig": {
     "extends": "react-app"
