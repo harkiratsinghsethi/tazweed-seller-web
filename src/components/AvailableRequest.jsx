@@ -32,14 +32,6 @@ export default class AvailableRequest extends React.Component {
             })
     };
 
-    componentDidUpdate() {
-        console.log('did update')
-    }
-
-    componentWillUpdate() {
-        console.log('will update')
-    }
-
     acceptRequest = (rowValue) => {
 
         const time = rowValue.row.SLOT.split('-');;
